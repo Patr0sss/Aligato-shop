@@ -60,30 +60,6 @@
   padding-left: 10px;
   font-size: 18px;
 }
-/* .sBarSvg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  outline: none;
-  border: 1px solid grey;
-  border-right-color: grey;
-  border-right-width: 1px;
-  border-radius: 30px 0 0 30px;
-  height: 45%;
-  aspect-ratio: 1/1;
-  background-color: white;
-}
-input {
-  outline: none;
-}
-.sBar {
-  padding-left: 5px;
-  width: 55%;
-  height: 45%;
-  border-radius: 0px 30px 30px 0px;
-  border: 1px solid grey;
-  border-left: none;
-} */
 
 .profileButton {
   display: flex;
@@ -101,4 +77,32 @@ input {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  /* border: 1px solid grey; */
+  border-radius: 20px;
+  padding: 4px;
+}
+
+@media (max-width: 950px) {
+  .NavBar {
+    flex-direction: column;
+    height: 40vh;
+    padding-top: 10px;
+  }
+
+  .wholeSearchingBar {
+    height: 55%;
+    width: 80%;
+  }
+  .searchingBar {
+    width: 80%;
+  }
+
+  .ShoppingCart {
+    width: 15%;
+    height: 60%;
+  }
+
+  .profileButton {
+    width: 40%;
+  }
 }

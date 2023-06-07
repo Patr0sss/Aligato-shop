@@ -3,4 +3,49 @@
   justify-content: center;
   align-items: center;
   width: 100vw;
+  flex-direction: column;
+}
+
+.columnLandingPageItems {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  flex-direction: column;
+  padding-top: 20px;
+  gap: 20px;
+}
+
+.filteringOptions {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  font-family: Arial;
+  font-size: 20px;
+}
+
+.filterOption {
+  border-bottom: 2px solid transparent;
+}
+
+.filterOptionChosen {
+  border-bottom: 2px solid black;
+}
+.productLayout {
+  width: 100%;
+  display: grid;
+  grid-row: 4;
+  grid-template-columns: auto auto auto auto;
+}
+
+@media (max-width: 950px) {
+  .productLayout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  }
 }

@@ -1,0 +1,60 @@
+.ItemCard {
+  width: 60%;
+  height: 40vh;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.ItemCard:hover {
+  opacity: 0.7;
+}
+
+.picture,
+.name,
+.price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial;
+  font-size: 30px;
+}
+
+.picture {
+  height: 50%;
+  /* background-color: red; */
+  width: 100%;
+  border-bottom: 2px solid grey;
+}
+.name {
+  height: 25%;
+  /* background-color: yellow; */
+}
+
+.price {
+  height: 25%;
+}
+
+@media (max-width: 950px) {
+  .ItemCard {
+    gap: 10px;
+  }
+}
+
+.buyingItem {
+  position: absolute;
+  width: 60vw;
+  left: 20vw;
+  right: 20vw;
+  top: 150px;
+  height: 500px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
