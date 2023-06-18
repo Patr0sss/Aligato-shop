@@ -1,0 +1,15 @@
+.Footer {
+  display: block;
+  height: 200px;
+  background-color: red;
+}
+
+.footerInside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #001220;
+  /* background-color: #2f4858; */
+}

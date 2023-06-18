@@ -1,35 +1,44 @@
 import "./ItemCard.css";
-import BlankItem from "../../assets/BlankItem";
-import { useState } from "react";
-import Cross from "../../assets/Cross";
+// import BlankItem from "../../assets/BlankItem";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ItemCard({
-  picture = <BlankItem />,
-  id,
+  picture,
+  identifyID,
   name,
   price,
+  data,
 }: {
-  picture?: JSX.Element;
-  id?: string;
+  picture?: string;
+  identifyID: string;
   name?: string;
   price?: string;
+  data?: any;
 }) {
   const [itemClicked, setItemClicked] = useState(false);
+
+  useEffect(() => {
+    null;
+  }, [picture]);
+
   return (
-    <>
-      <div className="ItemCard" onClick={() => setItemClicked(!itemClicked)}>
-        <div className="picture">{picture}</div>
-        <div className="name">{name}</div>
-        <div className="price">{price}</div>
+    <Link
+      to={"/" + identifyID}
+      state={{ data: data }}
+      className="ItemCard"
+      onClick={() => setItemClicked(!itemClicked)}
+    >
+      <div className="picture">
+        <img
+          src={"/src/productIcons/" + picture + ".png"}
+          width="100vw"
+          bacground-color="red"
+          aspect-ratio="1:1"
+        ></img>
       </div>
-      {itemClicked == true ? (
-        <div className="buyingItem">
-          NIE KUPISZ
-          <div onClick={() => setItemClicked(!itemClicked)}>
-            <Cross />
-          </div>
-        </div>
-      ) : null}
-    </>
+      <div className="name">{name}</div>
+      <div className="price">{price} $</div>
+    </Link>
   );
 }

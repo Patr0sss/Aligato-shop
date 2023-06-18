@@ -12,6 +12,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /* min-height: 300px; */
+  overflow-x: hidden;
+  width: auto;
 }
 
 a {
@@ -28,8 +32,8 @@ body {
   display: flex;
   justify-content: center;
   /* align-items: center; */
-  min-width: 320px;
-  min-height: 100vh;
+  /* min-width: 320px; */
+  min-height: 500px;
 }
 
 h1 {

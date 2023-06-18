@@ -1,0 +1,163 @@
+.itemPage,
+.itemBlock,
+.leftSide,
+.rightSide,
+.nameIP,
+.description,
+.priceIP,
+.addCart,
+.cartButton,
+.boxRightSide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.nameIP,
+.description,
+.priceIP,
+.addCart {
+  width: 80%;
+  font-family: Arial;
+}
+
+.itemPage {
+  width: 100vw;
+  flex-direction: column;
+  background-image: url("../../assets/BG2.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-clip: border-box; */
+}
+
+.itemBlock {
+  width: 100%;
+  height: calc(100vh - 120px);
+}
+
+.leftSide {
+  width: 50%;
+  height: 100%;
+}
+
+.rightSide {
+  height: 100%;
+  width: 50%;
+  flex-direction: column;
+}
+
+.boxRightSide {
+  flex-direction: column;
+  height: 80%;
+  width: 80%;
+  border: 3px solid rgb(25, 250, 250);
+  border: 3px solid #001220;
+
+  background-color: rgb(245, 250, 250);
+  border-radius: 10px;
+}
+
+.nameIP {
+  height: 10%;
+  /* background-color: red; */
+  /* font-size: 40px; */
+  justify-content: left;
+  font-size: clamp(10px, 4vw, 40px);
+}
+.description {
+  height: 40%;
+  font-size: clamp(16px, 3vw, 25px);
+  overflow-y: auto;
+}
+
+.priceIP {
+  height: 10%;
+  /* background-color: yellow; */
+  font-size: 25px;
+  justify-content: left;
+}
+
+.addCart {
+  height: 10%;
+  /* background-color: pink; */
+  justify-content: left;
+  gap: 10px;
+}
+
+.cartButton {
+  border: 2px solid grey;
+  border: 2px solid #001220;
+
+  border-radius: 5px;
+  padding: 10px;
+  color: black;
+  font-weight: bold;
+}
+
+.cartButton:hover {
+  color: rgb(25, 250, 250);
+  background-color: rgb(245, 250, 250);
+  border: 2px solid #001220;
+  cursor: pointer;
+}
+
+.itemPicture {
+  border: 3px solid rgb(25, 250, 250);
+  border: 3px solid #001220;
+
+  background-color: rgb(245, 250, 250);
+  border-radius: 10px;
+  padding: 75px;
+}
+
+.itemPicture:hover {
+  transform: scale(0.5);
+  overflow: hidden;
+}
+
+@media (max-width: 950px) {
+  /* .itemPage {
+     height: 200dvh; 
+  } */
+  .itemBlock {
+    flex-direction: column;
+  }
+
+  .itemPicture {
+    border: 3px solid rgb(25, 250, 250);
+    border: 3px solid #001220;
+
+    background-color: rgb(245, 250, 250);
+    border-radius: 10px;
+    /* width: 100%; */
+    padding: 45px;
+  }
+
+  .rightSide {
+    /* height: 100%; */
+    width: 80%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .nameIP {
+    /* height: 10%; */
+    /* background-color: red; */
+    /* font-size: 40px; */
+    justify-content: left;
+    font-size: clamp(10px, 4vw, 40px);
+  }
+  .description {
+    /* height: 40%; */
+    font-size: clamp(16px, 3vw, 25px);
+    /* overflow-y: auto; */
+  }
+
+  .priceIP {
+    /* height: 10%; */
+    /* background-color: yellow; */
+    font-size: 25px;
+    justify-content: left;
+  }
+}
