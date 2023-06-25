@@ -3,49 +3,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
-  background-color: #001220;
-  /* background-color: #2f4858; */
+  background-color: #002e72;
   width: 100%;
 }
 
 .brandName,
 .brandName:hover {
+  padding-left: 50px;
   width: 25%;
   height: 100%;
   display: flex;
   justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-weight: bold;
   font-size: 40px;
   font-family: Arial;
   color: white;
   background-color: transparent;
-}
-
-span {
-  font-size: 24px;
-  /* color: black; */
-  outline: 2px solid red;
-  padding: 2px;
-}
-.searchingBar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 100%;
-}
-
-.wholeSearchingBar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60%;
-  height: 50%;
-  border: 1px solid grey;
-  border-radius: 30px;
-  background-color: white;
 }
 
 .ShoppingCart {
@@ -56,24 +31,12 @@ span {
   border-right: 1px solid grey;
 }
 
-.shoppingInput {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 85%;
-  height: 80%;
-  border-radius: 0 30px 30px 0;
-  outline: none;
-  border: none;
-  padding-left: 10px;
-  font-size: 18px;
-}
-
 .profileButton {
   display: flex;
-  justify-content: center;
+  justify-content: right;
+  padding-right: 100px;
   align-items: center;
-  width: 25%;
+  width: 50%;
   height: 100%;
   font-weight: bold;
 }
@@ -94,25 +57,29 @@ span {
 @media (max-width: 950px) {
   .NavBar {
     flex-direction: column;
-    /* height: 40vh; */
     height: auto;
     padding-top: 10px;
   }
 
-  .wholeSearchingBar {
-    height: 55%;
-    width: 80%;
-  }
-  .searchingBar {
-    width: 80%;
-  }
-
-  .ShoppingCart {
-    width: 15%;
-    height: 60%;
-  }
-
   .profileButton {
-    width: 40%;
+    /* width: 100%; */
+    width: auto;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  /* .smallProfileButton {
+    background-color: pink;
+  } */
+  .brandName,
+  .brandName:hover {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
   }
 }

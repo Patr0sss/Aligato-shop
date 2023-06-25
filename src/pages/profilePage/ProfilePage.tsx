@@ -4,7 +4,7 @@ import "./ProfilePage.css";
 function ProfilePage() {
   return (
     <div className="profilePage">
-      <NavBar searching={false} />
+      <NavBar />
     </div>
   );
 }

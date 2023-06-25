@@ -1,0 +1,125 @@
+.SavingBlock {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.Saving {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  /* background-image: url("/src/assets/paski.jpg"); */
+}
+
+.SavingLeft {
+  width: 50%;
+  height: 100%;
+  /* height: 50vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  /* background-color: red; */
+}
+
+.SavingLeftInside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 500px;
+  height: 500px; */
+  width: 50%;
+  aspect-ratio: 1/1;
+  /* height: 30dvh; */
+  /* height: 100%; */
+  background-image: url("/src/assets/lion.jpg"), url("/src/assets/africa.jpg");
+  background-size: cover;
+  background-blend-mode: screen;
+}
+
+.SavingRight {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.SavingRightBold {
+  font-family: arial;
+  font-weight: bold;
+  font-size: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SavingRightDSC {
+  width: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: arial;
+  font-size: 1.6rem;
+  /* text-wrap: balance; */
+}
+
+.ExtinctButton {
+  width: 30%;
+  padding: 15px;
+  background-color: rgb(149, 193, 246);
+  background-color: #002e72;
+  border-radius: 5px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  color: white;
+}
+
+.ExtinctButton:hover {
+  background-color: rgb(149, 193, 246);
+}
+
+@media (max-width: 950px) {
+  .Saving {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .SavingLeft {
+    width: 100%;
+  }
+
+  .SavingLeftInside {
+    width: 95%;
+    max-width: 500px;
+  }
+
+  .SavingRight {
+    width: 90%;
+  }
+
+  .SavingRightBold {
+    font-family: arial;
+    font-weight: bold;
+    font-size: 2rem;
+    width: 100%;
+  }
+
+  .SavingRightDSC {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: arial;
+    font-size: 1.3rem;
+  }
+}

@@ -1,44 +1,32 @@
-// import { useState } from "react";
-
-// import Husky from "../../assets/Husky";
+import { useState } from "react";
 import Elephant from "../../assets/Elephant";
-import LogoPanda from "../../assets/LogoPanda";
-import ShoppingCart from "../../assets/ShoppingCart";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 
-function NavBar({ searching = true }: { searching?: boolean }) {
+function NavBar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
   return (
     <div className="NavBar">
-      <Link to="/" className="brandName">
-        Aligato
-        {/* <LogoPanda fill="black" /> */}
-        <Elephant />
-      </Link>
-      {searching == true ? (
-        <>
-          <div className="searchingBar">
-            <div className="wholeSearchingBar">
-              <div className="ShoppingCart">
-                <ShoppingCart width="25px" />
-              </div>
-              <input
-                className="shoppingInput"
-                placeholder="Czego szukasz ?"
-              ></input>
-            </div>
-          </div>
+      <div style={{ width: "50%" }} className="brandName">
+        <Link to="/" className="brandName">
+          Aligato
+          <Elephant />
+        </Link>
+      </div>
 
-          <div className="profileButton">
-            <Link to="/profilepage" style={{ color: "black" }}>
-              <div className="smallProfileButton">
-                Your Profile
-                {/* <Husky fill="#ffffff" /> */}
-              </div>
-            </Link>
+      <div className="profileButton">
+        <Link
+          // to="/profilepage"
+          // {isLoggedIn?  to = "/profilePage": to="/loginPage"}
+          to={isLoggedIn ? "/profilePage" : "/loginPage"}
+          style={{ color: "black" }}
+        >
+          <div className="smallProfileButton">
+            {isLoggedIn ? <div>Your Profile</div> : <div>Login</div>}
           </div>
-        </>
-      ) : null}
+        </Link>
+      </div>
     </div>
   );
 }

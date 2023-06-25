@@ -23,9 +23,17 @@
 .ItemCard:hover {
   background-color: rgb(218, 230, 250);
   border: 2px solid rgb(205, 230, 250);
-  /* opacity: 0.9; */
+  /* animation: spin 1s infinite linear; */
 }
 
+/* @keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+} */
 .picture,
 .name,
 .price {
