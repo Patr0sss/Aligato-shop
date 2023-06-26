@@ -27,8 +27,6 @@ body {
   overflow-x: hidden;
   padding-top: 10px;
   padding-bottom: 140px;
-  background-color: #009cf1;
-  background-color: #7fcdf8;
   background-color: rgb(149, 193, 246);
 }
 
@@ -118,7 +116,7 @@ body {
   justify-content: space-between;
   font-weight: bold;
   color: white;
-  padding-bottom: 5px;
+  padding-bottom: 15px;
   padding-top: 5px;
 }
 .filteringOptions {
@@ -129,6 +127,7 @@ body {
   width: 50%;
   font-family: Arial;
   font-size: 20px;
+  /* padding-bottom: 10px; */
 }
 
 .filterOption {
@@ -158,6 +157,19 @@ body {
   font-family: arial;
   font-weight: bold;
   font-size: 3rem;
+}
+
+.buyingInput,
+.buyingInput:hover,
+.buyingInput::selection {
+  width: 50%;
+  height: 35px;
+  border: none;
+  outline: transparent;
+  border-radius: 5px;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 @media (max-width: 950px) {

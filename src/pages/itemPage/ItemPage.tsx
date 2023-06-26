@@ -74,7 +74,7 @@ function ItemPage() {
                 <div
                   className="sign"
                   onClick={() => {
-                    if (quantity > 0) {
+                    if (quantity > 1) {
                       setQuantity(quantity - 1);
                     }
                   }}
@@ -93,7 +93,7 @@ function ItemPage() {
                   +
                 </div>
               </div>
-              <div className="dollarPrice">${newData.price}</div>
+              <div className="dollarPrice">${newData.price * quantity}</div>
             </div>
             <div className="addCart">
               <div className="cartButton">add to cart</div>

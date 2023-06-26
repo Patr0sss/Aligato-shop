@@ -1,0 +1,269 @@
+.loginPage {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.LoginDivForTriangle {
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxForTriangle {
+  height: 100px;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+}
+
+.loginPageBigTriangle {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 10px solid #002e72;
+  transform: translateY(-50%) rotate(135deg);
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginPageSmallTriangle {
+  width: 50%;
+  aspect-ratio: 1;
+  border: 8px solid #002e72;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AbsoluteBrand,
+.AbsoluteBrand:hover {
+  transform: rotate(-135deg) translateY(120%);
+  position: absolute;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #002e72;
+}
+.boxDownLoginPage {
+  width: 100%;
+  height: calc(100vh - 110px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginCardLeft {
+  width: 50%;
+  min-width: 400px;
+  min-height: 500px;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.loginCardRight {
+  width: 50%;
+  height: 90%;
+  min-width: 400px;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.loginLeftCardAnimation {
+  animation: slideAnimation2 0.5s linear 1 alternate;
+}
+
+.loginRightCardAnimation {
+  animation: slideAnimation 0.5s linear 1 alternate;
+}
+
+@keyframes slideAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideAnimation2 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slideAnimation3 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideAnimation4 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.loginLeftCardAnimation {
+  transform: translateX(100%);
+}
+
+.loginRightCardAnimation {
+  transform: translateX(-100%);
+}
+
+.loginRightCardAnimationReverse {
+  animation: slideAnimation3 0.5s linear 1 alternate;
+}
+
+.loginLeftCardAnimationReverse {
+  animation: slideAnimation4 0.5s linear 1 alternate;
+}
+
+.leftBoxForShadow {
+  width: 80%;
+  height: 100%;
+  border-radius: 5px;
+  border: 3px solid #002e72;
+  box-shadow: 8px 8px 24px 0px #002e72;
+}
+
+.loginPageImage1 {
+  width: 80%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+  border: 3px solid #002e72;
+  box-shadow: 8px 8px 24px 0px #002e72;
+}
+
+.leftLoginBar1 {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 30px;
+  font-size: 2rem;
+}
+.leftLoginBar2 {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.leftLoginBar3 {
+  font-size: 20px;
+}
+
+.killHim {
+  display: none;
+}
+
+.logRegBox {
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.logRegButton {
+  background-color: #002e72;
+  height: 32%;
+  width: 50%;
+  color: white;
+  border: 2px solid black;
+
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.logPageInput {
+  outline: transparent;
+  width: 60%;
+  height: 18%;
+  border-radius: 5px;
+  color: black;
+  border: 2px solid #002e72;
+  padding-left: 5px;
+  padding-right: 5px;
+  box-shadow: 2px 2px 5px 0px #002e72;
+  font-weight: bold;
+  font-family: arial;
+  font-size: 16px;
+}
+
+@media (max-width: 950px) {
+  .loginCardRight {
+    display: none;
+    animation: none;
+  }
+
+  .loginCardLeft {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: none;
+    min-width: 100%;
+  }
+
+  .leftBoxForShadow {
+    width: 90%;
+    max-width: 500px;
+  }
+
+  .loginLeftCardAnimation {
+    animation: none;
+    transform: translateX(0px);
+  }
+
+  .loginRightCardAnimation {
+    animation: none;
+    transform: translateX(0px);
+  }
+
+  input {
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .AbsoluteBrand {
+    transform: rotate(-135deg) translateY(155%);
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .logRegButton {
+    width: 220px;
+    font-size: 14px;
+  }
+}

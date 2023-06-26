@@ -149,6 +149,10 @@ function App() {
                 </div>
               ))}
             </div>
+            <input
+              placeholder="Czego Szukasz ?"
+              className="buyingInput"
+            ></input>
             <div className="numItems">Number Of Items : {itemCount}</div>
           </div>
 

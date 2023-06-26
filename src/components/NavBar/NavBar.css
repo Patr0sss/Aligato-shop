@@ -49,9 +49,47 @@
   border-radius: 20px;
   padding: 4px;
   font-family: Arial;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
   color: white;
+}
+
+.LoginDivForTriangle2 {
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxForTriangle2 {
+  height: 100px;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+}
+
+.loginPageBigTriangle2 {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 10px solid white;
+  transform: translateY(-50%) rotate(135deg);
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginPageSmallTriangle2 {
+  width: 50%;
+  aspect-ratio: 1;
+  border: 8px solid white;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 950px) {
