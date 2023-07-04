@@ -18,6 +18,36 @@ body {
   width: 10px;
 }
 
+.WelcomePage {
+  height: calc(100vh - 120px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+  object-fit: cover;
+}
+
+.WelcomePage {
+  position: relative;
+}
+
+.WelcomePageIMG {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.welcomeMessage {
+  position: absolute;
+  top: 40%;
+  font-size: 5rem;
+  font-weight: bold;
+  font-family: arial;
+  color: white;
+  text-align: center;
+}
+
 .landingPage {
   display: flex;
   justify-content: space-between;
@@ -28,66 +58,6 @@ body {
   padding-top: 10px;
   padding-bottom: 140px;
   background-color: rgb(149, 193, 246);
-}
-
-.CategoryBar {
-  width: 80%;
-  height: 350px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  gap: 20px;
-}
-
-.CategoryImageBox {
-  position: relative;
-  width: 33.33%;
-  height: 100%;
-}
-
-.categoryPicture {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: 5px;
-}
-
-.categoryName {
-  width: 100%;
-  height: 100%;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 2rem;
-}
-
-.categoryNameOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 5px;
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
-.categoryNameOverlay > * {
-  transform: translateY(30px);
-  transition: transform 0.4s;
-}
-
-.categoryNameOverlay:hover {
-  opacity: 1;
-}
-
-.categoryNameOverlay:hover > * {
-  transform: translateY(0);
 }
 
 .columnLandingPageItems {
@@ -109,6 +79,7 @@ body {
   font-family: Arial;
   font-size: 20px;
 }
+
 .filterAndCount {
   display: flex;
   width: 100%;
@@ -119,6 +90,7 @@ body {
   padding-bottom: 15px;
   padding-top: 5px;
 }
+
 .filteringOptions {
   display: flex;
   justify-content: left;
@@ -127,7 +99,6 @@ body {
   width: 50%;
   font-family: Arial;
   font-size: 20px;
-  /* padding-bottom: 10px; */
 }
 
 .filterOption {
@@ -144,12 +115,6 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
   row-gap: 30px;
   justify-items: center;
-}
-
-.reklama {
-  display: block;
-  height: 60dvh;
-  background-color: green;
 }
 
 .ChooseTheCategory {
@@ -221,5 +186,17 @@ body {
   .CategoryImageBox {
     width: 80%;
     height: auto;
+  }
+
+  .buyingInput,
+  .buyingInput:hover,
+  .buyingInput::selection {
+    width: 80%;
+  }
+}
+
+@media (max-width: 900px) {
+  .welcomeMessage {
+    font-size: 3rem;
   }
 }

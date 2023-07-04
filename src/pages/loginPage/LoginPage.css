@@ -15,7 +15,7 @@
 }
 
 .boxForTriangle {
-  height: 100px;
+  height: 110px;
   aspect-ratio: 1;
   display: flex;
   justify-content: center;
@@ -147,6 +147,7 @@
   border-radius: 5px;
   border: 3px solid #002e72;
   box-shadow: 8px 8px 24px 0px #002e72;
+  background-color: white;
 }
 
 .loginPageImage1 {

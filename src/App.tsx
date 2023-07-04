@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import ItemCard from "./components/itemCard/ItemCard";
 import Footer from "./components/footer/Footer";
-import ImportantInfo from "./components/importantInfo/ImportantInfo";
 import SavingSpecies from "./components/SavingSpecies/SavingSpecies";
 
 function App() {
@@ -66,66 +65,15 @@ function App() {
     setItemCount(number.length);
   }, [number]);
 
-  const buyingSectionRef = useRef<HTMLDivElement>(null);
-
-  const handleScrollToDiv = () => {
-    if (buyingSectionRef.current) {
-      const elementPosition =
-        buyingSectionRef.current.getBoundingClientRect().top;
-      const offset = window.pageYOffset + elementPosition - 80;
-      window.scrollTo({
-        top: offset,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
     <>
       <NavBar />
-      <div className="landingPage">
-        <div className="columnLandingPageItems">
-          <div className="ChooseTheCategory">Choose The Category</div>
-          <div className="CategoryBar">
-            <div
-              className="CategoryImageBox"
-              onClick={() => {
-                setFilter("Dog"), handleScrollToDiv();
-              }}
-            >
-              <img src="/src/assets/Benek.jpg" className="categoryPicture" />
-              <div className="categoryNameOverlay">
-                <div className="categoryName">DOG</div>
-              </div>
-            </div>
-            <div
-              className="CategoryImageBox"
-              onClick={() => {
-                setFilter("Cat"), handleScrollToDiv();
-              }}
-            >
-              <img src="/src/assets/Tomasz.jpg" className="categoryPicture" />
-              <div className="categoryNameOverlay">
-                <div className="categoryName">CAT</div>
-              </div>
-            </div>
-            <div
-              className="CategoryImageBox"
-              onClick={() => {
-                setFilter("Reptile"), handleScrollToDiv();
-              }}
-            >
-              <img src="/src/assets/Edmund.jpg" className="categoryPicture" />
-              <div className="categoryNameOverlay">
-                <div className="categoryName">REPTILE</div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="WelcomePage">
+        <img className="WelcomePageIMG" src="/src/assets/welcome2.jpg" />
+        <div className="welcomeMessage">Welcome to Aligato !</div>
       </div>
-      <SavingSpecies />
-      {/* <ImportantInfo /> */}
 
+      <SavingSpecies />
       <div
         className="landingPage"
         style={{
@@ -156,7 +104,7 @@ function App() {
             <div className="numItems">Number Of Items : {itemCount}</div>
           </div>
 
-          <div className="productLayout" ref={buyingSectionRef}>
+          <div className="productLayout">
             {products
               .filter((product) => product.id == filter || filter == "All")
               .map((product) => (
