@@ -1,0 +1,9 @@
+.barIcon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  background-color: red;
+  width: 50%;
+  height: 20px;
+}

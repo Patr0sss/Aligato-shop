@@ -194,6 +194,10 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.logRegButton:active {
+  opacity: 0.9;
+}
 .logRegButton {
   background-color: #002e72;
   height: 32%;

@@ -46,6 +46,7 @@ body {
   font-family: arial;
   color: white;
   text-align: center;
+  /* color: #002e72; */
 }
 
 .landingPage {
@@ -193,6 +194,14 @@ body {
   .buyingInput::selection {
     width: 80%;
   }
+
+  .WelcomePageIMG {
+    object-fit: cover;
+  }
+
+  /* .WelcomePage {
+    height: 50vh;
+  } */
 }
 
 @media (max-width: 900px) {

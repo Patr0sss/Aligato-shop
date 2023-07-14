@@ -92,32 +92,137 @@
   align-items: center;
 }
 
+.hideDesktop {
+  display: none;
+}
+
+.displayNone {
+  display: none;
+}
 @media (max-width: 950px) {
   .NavBar {
-    flex-direction: column;
-    height: auto;
-    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    position: relative;
   }
 
   .profileButton {
-    /* width: 100%; */
     width: auto;
-    /* background-color: red; */
+    width: 25%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
   }
 
-  /* .smallProfileButton {
-    background-color: pink;
-  } */
   .brandName,
   .brandName:hover {
-    width: 100%;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
+    height: 100%;
+  }
+
+  .hideMobile {
+    display: none;
+  }
+
+  .hideDesktop {
+    display: flex;
+    z-index: 10;
+  }
+
+  .hamburger,
+  .hamHide {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: self-start; */
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    height: calc(100vh - 122px);
+    width: 80vw;
+    max-width: 350px;
+    background-color: #002e72;
+    border-top: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-size: 30px;
+  }
+  .hamburger {
+    animation: hamburgerShow 0.2s linear 1 alternate;
+  }
+
+  @keyframes hamburgerShow {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 80vw;
+      max-width: 350px;
+    }
+  }
+  .hamHide {
+    width: 0px;
+    animation: hamburgerHIDE 0.2s linear 1 alternate;
+  }
+
+  @keyframes hamburgerHIDE {
+    0% {
+      max-width: 350px;
+      width: 80vw;
+    }
+    100% {
+      width: 0px;
+    }
+  }
+
+  .hamItem {
+    font-weight: bold;
+    width: 70%;
+    /* background-color: green; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+  }
+
+  .hamUser {
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: green; */
+  }
+
+  .logOut {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: red;
+  }
+
+  .hamburgerContent {
+    width: 100%;
+    display: flex;
+    justify-content: top;
+    /* margin-top: 20px; */
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+    /* background-color: red; */
+    gap: 7%;
+  }
+
+  .green {
+    color: #25d431;
   }
 }

@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar/NavBar";
 import ItemCard from "./components/itemCard/ItemCard";
 import Footer from "./components/footer/Footer";
 import SavingSpecies from "./components/SavingSpecies/SavingSpecies";
+import { auth } from "./config/firebase";
 
 function App() {
   const filteringOptions = ["All", "Dog", "Cat", "Reptile"];

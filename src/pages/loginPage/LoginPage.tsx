@@ -1,11 +1,42 @@
 import { useState } from "react";
 import "./LoginPage.css";
 import { Link } from "react-router-dom";
+import { auth } from "../../config/firebase";
+import { useNavigate } from "react-router-dom";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 function LoginPage() {
   const [loggingMode, setLoggingMode] = useState("Login");
   const [animationRegistration, setAnimationRegistration] = useState(false);
   const [animationReverse, setAnimationReverse] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const navigate = useNavigate();
+  const createUser = async () => {
+    if (
+      password === repeatPassword &&
+      password !== "" &&
+      regexEmail.test(email)
+    ) {
+      await createUserWithEmailAndPassword(auth, email, password);
+      navigate("/");
+    }
+  };
+
+  const handleLogin = async () => {
+    await signInWithEmailAndPassword(auth, email, password);
+    navigate("/");
+  };
+
+  console.log(auth.currentUser);
+  // console.log(1);
+
   return (
     <div className="loginPage">
       <div className="LoginDivForTriangle">
@@ -32,11 +63,16 @@ function LoginPage() {
           <div className="leftBoxForShadow">
             <div className="leftLoginBar1">{loggingMode}</div>
             <div className="leftLoginBar2">
-              <input placeholder="Email" className="logPageInput"></input>
+              <input
+                placeholder="Email"
+                className="logPageInput"
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
               <input
                 placeholder="Password"
                 type="password"
                 className="logPageInput"
+                onChange={(e) => setPassword(e.target.value)}
               ></input>
               <input
                 placeholder="Repeat Password"
@@ -44,10 +80,16 @@ function LoginPage() {
                 className={
                   loggingMode == "Register" ? "logPageInput" : "killHim"
                 }
+                onChange={(e) => setRepeatPassword(e.target.value)}
               ></input>
             </div>
             <div className="logRegBox">
-              <div className="logRegButton leftLoginBar1 leftLoginBar3">
+              <div
+                className="logRegButton leftLoginBar1 leftLoginBar3"
+                onClick={() => {
+                  loggingMode == "Register" ? createUser() : handleLogin();
+                }}
+              >
                 {loggingMode}
               </div>
               <div
