@@ -138,10 +138,6 @@
 
   .hamburger,
   .hamHide {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: self-start; */
     position: absolute;
     top: 100%;
     right: 0%;
@@ -186,9 +182,8 @@
   }
 
   .hamItem {
-    font-weight: bold;
+    /* font-weight: bold; */
     width: 70%;
-    /* background-color: green; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -200,7 +195,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: green; */
   }
 
   .logOut {
@@ -214,12 +208,10 @@
     width: 100%;
     display: flex;
     justify-content: top;
-    /* margin-top: 20px; */
     align-items: center;
     flex-direction: column;
     height: 80%;
-    /* background-color: red; */
-    gap: 7%;
+    gap: 3%;
   }
 
   .green {

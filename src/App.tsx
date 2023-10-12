@@ -9,9 +9,10 @@ import { auth } from "./config/firebase";
 function App() {
   const filteringOptions = ["All", "Dog", "Cat", "Reptile"];
   const [filter, setFilter] = useState("All");
+  console.log(auth.currentUser);
   const products = [
     {
-      id: "Reptile",
+      species: "Reptile",
       identifyID: "1",
       name: "Turtle",
       price: "300",
@@ -20,7 +21,7 @@ function App() {
         "Discover our captivating turtle, a fascinating creature that brings a sense of serenity and tranquility to any space, making it a unique addition to your home.",
     },
     {
-      id: "Dog",
+      species: "Dog",
       identifyID: "2",
       name: "Dog",
       price: "200",
@@ -29,7 +30,7 @@ function App() {
         "Meet our delightful dog, a playful and friendly companion with a heart full of love, ready to brighten your days and fill your home with happiness.",
     },
     {
-      id: "Reptile",
+      species: "Reptile",
       identifyID: "3",
       name: "Chameleon",
       price: "250",
@@ -38,7 +39,7 @@ function App() {
         "Encounter our mesmerizing chameleon, a master of disguise with its vibrant colors and incredible ability to adapt, adding a touch of wonder and intrigue to your living environment.",
     },
     {
-      id: "Cat",
+      species: "Cat",
       identifyID: "4",
       name: "Cat",
       price: "150",
@@ -47,7 +48,7 @@ function App() {
         "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
     },
     {
-      id: "Reptile",
+      species: "Reptile",
       identifyID: "5",
       name: "Geco",
       price: "150",
@@ -55,11 +56,119 @@ function App() {
       description:
         "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
     },
+    {
+      species: "Reptile",
+      identifyID: "1",
+      name: "Turtle",
+      price: "300",
+      picture: "turtle1",
+      description:
+        "Discover our captivating turtle, a fascinating creature that brings a sense of serenity and tranquility to any space, making it a unique addition to your home.",
+    },
+    {
+      species: "Dog",
+      identifyID: "2",
+      name: "Dog",
+      price: "200",
+      picture: "dog1",
+      description:
+        "Meet our delightful dog, a playful and friendly companion with a heart full of love, ready to brighten your days and fill your home with happiness.",
+    },
+    {
+      species: "Reptile",
+      identifyID: "3",
+      name: "Chameleon",
+      price: "250",
+      picture: "cameleon1",
+      description:
+        "Encounter our mesmerizing chameleon, a master of disguise with its vibrant colors and incredible ability to adapt, adding a touch of wonder and intrigue to your living environment.",
+    },
+    {
+      species: "Cat",
+      identifyID: "4",
+      name: "Cat",
+      price: "150",
+      picture: "cat1",
+      description:
+        "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
+    },
+    {
+      species: "Reptile",
+      identifyID: "5",
+      name: "Geco",
+      price: "150",
+      picture: "geco1",
+      description:
+        "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
+    },
+    {
+      species: "Cat",
+      identifyID: "4",
+      name: "Cat",
+      price: "150",
+      picture: "cat1",
+      description:
+        "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
+    },
+    {
+      species: "Reptile",
+      identifyID: "5",
+      name: "Geco",
+      price: "150",
+      picture: "geco1",
+      description:
+        "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
+    },
+    {
+      species: "Reptile",
+      identifyID: "1",
+      name: "Turtle",
+      price: "300",
+      picture: "turtle1",
+      description:
+        "Discover our captivating turtle, a fascinating creature that brings a sense of serenity and tranquility to any space, making it a unique addition to your home.",
+    },
+    {
+      species: "Dog",
+      identifyID: "2",
+      name: "Dog",
+      price: "200",
+      picture: "dog1",
+      description:
+        "Meet our delightful dog, a playful and friendly companion with a heart full of love, ready to brighten your days and fill your home with happiness.",
+    },
+    {
+      species: "Reptile",
+      identifyID: "3",
+      name: "Chameleon",
+      price: "250",
+      picture: "cameleon1",
+      description:
+        "Encounter our mesmerizing chameleon, a master of disguise with its vibrant colors and incredible ability to adapt, adding a touch of wonder and intrigue to your living environment.",
+    },
+    {
+      species: "Cat",
+      identifyID: "4",
+      name: "Cat",
+      price: "150",
+      picture: "cat1",
+      description:
+        "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
+    },
   ];
+
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  useEffect(() => {
+    setFilteredProducts(
+      products.filter((product) => product.species == filter || filter == "All")
+    );
+  }, [filter]);
+
   const [itemCount, setItemCount] = useState(0);
 
   const number = products.filter(
-    (product) => product.id == filter || filter == "All"
+    (product) => product.species == filter || filter == "All"
   );
 
   useEffect(() => {
@@ -69,16 +178,10 @@ function App() {
   return (
     <>
       <NavBar />
-      <div className="WelcomePage">
-        <img className="WelcomePageIMG" src="/src/assets/welcome2.jpg" />
-        <div className="welcomeMessage">Welcome to Aligato !</div>
-      </div>
 
-      <SavingSpecies />
       <div
         className="landingPage"
         style={{
-          backgroundColor: "rgb(149, 193, 246)",
           paddingBottom: "85px",
         }}
       >
@@ -106,8 +209,9 @@ function App() {
           </div>
 
           <div className="productLayout">
-            {products
-              .filter((product) => product.id == filter || filter == "All")
+            {filteredProducts
+              .slice(0, 8)
+              .filter((product) => product.species == filter || filter == "All")
               .map((product) => (
                 <ItemCard
                   name={product.name}
@@ -120,6 +224,36 @@ function App() {
           </div>
         </div>
       </div>
+      <SavingSpecies />
+
+      <div
+        className="landingPage"
+        style={{
+          paddingTop: itemCount > 8 ? "85px" : "0px",
+          paddingBottom: itemCount > 8 ? "85px" : "0px",
+        }}
+      >
+        <div
+          className="productLayout"
+          style={{
+            width: "95%",
+          }}
+        >
+          {filteredProducts
+            .slice(8)
+            .filter((product) => product.species == filter || filter == "All")
+            .map((product) => (
+              <ItemCard
+                name={product.name}
+                identifyID={product.identifyID}
+                price={product.price}
+                picture={product.picture}
+                data={product}
+              />
+            ))}
+        </div>
+      </div>
+
       <Footer />
     </>
   );

@@ -8,13 +8,16 @@
   align-items: center;
   flex-direction: column;
   border-radius: 5px;
-  background-color: rgb(255, 255, 255);
   background-color: rgb(205, 230, 250);
   border: 2px solid transparent;
   color: black;
   min-height: 200px;
-  border: 3px solid #001290;
   border: 2px solid transparent;
+  /* background-image: linear-gradient(
+    to bottom right,
+    rgb(205, 230, 250),
+    rgb(139, 182, 252)
+  ); */
 }
 
 .ItemCard:hover {
@@ -64,5 +67,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: pink; */
 }

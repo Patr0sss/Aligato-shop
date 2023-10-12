@@ -1,4 +1,59 @@
 .profilePage {
   min-height: 100vh;
   width: 100vw;
+  align-items: self-end;
+}
+
+.profileBox,
+.profilePageCard,
+.userData,
+.userLogOut,
+.logoutButtonPP {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: Arial;
+}
+
+.profileBox {
+  width: 100vw;
+  height: calc(100vh - 120px);
+  background-color: rgb(205, 230, 250);
+}
+
+.profilePageCard {
+  width: 40%;
+  height: 80vh;
+  border: 3px solid #002e72;
+  background-color: rgb(149, 193, 246);
+  border-radius: 5px;
+}
+
+.userData {
+  width: 80%;
+  height: 80%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.userLogOut {
+  width: 80%;
+  height: 20%;
+}
+
+.logoutButtonPP {
+  width: 80%;
+  max-width: 200px;
+  height: 50%;
+  background-color: blueviolet;
+  background-color: rgb(248, 72, 72);
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.logoutButtonPP:hover {
+  opacity: 0.85;
+  color: white;
 }

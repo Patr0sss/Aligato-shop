@@ -5,7 +5,6 @@ import Hamburger from "../../assets/Hamburger";
 import { auth } from "../../config/firebase";
 import { signOut } from "firebase/auth";
 import BarIcon from "../barWithIcon/BarIcon";
-import Arrow from "../../assets/Arrow";
 import LogOut from "../../assets/LogOut";
 import Cart from "../../assets/Cart";
 import MyProfile from "../../assets/MyProfile";
@@ -63,34 +62,6 @@ function NavBar() {
             : "hideDesktop hideMobile"
         }
       >
-        {/* {hamburgerOpen ? (
-          <>
-            <div className="hamItem">{auth.currentUser ? "UserName" : ""}</div>
-
-            <Link
-              to={auth.currentUser ? "/profilePage" : "/loginPage"}
-              className="hamItem"
-              style={{ color: "white" }}
-            >
-              {auth.currentUser ? "My Profile" : "Login"}
-            </Link>
-
-            <div className="hamItem">Cart</div>
-            <div className="hamItem">About Us</div>
-            {auth.currentUser ? (
-              <div
-                className="hamItem logOut "
-                onClick={() => {
-                  handleLogOut();
-                  console.log(auth.currentUser);
-                }}
-              >
-                Log Out
-              </div>
-            ) : null}
-          </>
-        ) : null} */}
-
         <div className={hamburgerOpen ? "hamItem hamUser" : "displayNone"}>
           {auth.currentUser ? "UserName" : null}
         </div>
@@ -104,9 +75,7 @@ function NavBar() {
                   : "hamItem green"
                 : "displayNone"
             }
-            // text="My Profile"
             text={auth.currentUser ? "My Profile" : "Login"}
-            // icon={<MyProfile />}
             icon={auth.currentUser ? <MyProfile /> : <LoginIcon />}
             link={auth.currentUser ? "/profilePage" : "/loginPage"}
           />
@@ -124,16 +93,18 @@ function NavBar() {
             icon={<AboutUs />}
           />
           {auth.currentUser ? (
+            // <Link to="./loginPage">
             <BarIcon
               className={hamburgerOpen ? "hamItem logOut" : "displayNone"}
               text="Log Out"
               icon={<LogOut />}
               onClick={() => {
                 handleLogOut();
-                console.log(auth.currentUser);
+                // console.log(auth.currentUser);
               }}
             />
-          ) : null}
+          ) : // </Link>
+          null}
         </div>
       </div>
     </div>
