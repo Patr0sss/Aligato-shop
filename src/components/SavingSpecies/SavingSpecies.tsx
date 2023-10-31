@@ -12,9 +12,14 @@ function SavingSpecies() {
           <div className="SavingRightBold">They may extinct !</div>
           <div className="SavingRightDSC">
             We are fundrasing for endangered species. If you want to help our
-            initiative , you can send a donation
+            initiative click the button below
           </div>
-          <div className="ExtinctButton">Click Here</div>
+          <a
+            className="ExtinctButton"
+            href="https://www.worldwildlife.org/initiatives/protecting-species"
+          >
+            Click Here
+          </a>
         </div>
       </div>
     </div>

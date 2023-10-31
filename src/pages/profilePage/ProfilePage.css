@@ -20,6 +20,7 @@
   width: 100vw;
   height: calc(100vh - 120px);
   background-color: rgb(205, 230, 250);
+  perspective: 500px;
 }
 
 .profilePageCard {
@@ -28,6 +29,7 @@
   border: 3px solid #002e72;
   background-color: rgb(149, 193, 246);
   border-radius: 5px;
+  z-index: 10;
 }
 
 .userData {
@@ -35,6 +37,18 @@
   height: 80%;
   margin-top: 10%;
   margin-bottom: 10%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 5%;
+  align-items: flex-start;
+  color: white;
+  font-family: arial;
+  font-size: 1.5rem;
+}
+
+.profilePageLine {
+  width: 90%;
+  border-bottom: 3px solid #002e72;
 }
 
 .userLogOut {
@@ -56,4 +70,36 @@
 .logoutButtonPP:hover {
   opacity: 0.85;
   color: white;
+}
+
+.profileFriend {
+  position: absolute;
+  width: 60px;
+  left: 0%;
+  bottom: 5%;
+  /* animation-name: friendTravel;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; */
+}
+
+/* @keyframes friendTravel {
+  0% {
+    transform: translateX(100vw);
+  }
+
+  100% {
+    transform: translateX(-5vw);
+  }
+} */
+@media (max-width: 1200px) {
+  .profilePageCard {
+    width: 65%;
+  }
+}
+
+@media (max-width: 750px) {
+  .profilePageCard {
+    width: 90%;
+  }
 }

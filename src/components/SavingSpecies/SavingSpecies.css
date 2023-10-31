@@ -66,7 +66,6 @@
 .ExtinctButton {
   width: 30%;
   padding: 15px;
-  background-color: rgb(149, 193, 246);
   background-color: #002e72;
   border-radius: 5px;
   font-weight: bold;
@@ -79,6 +78,7 @@
 
 .ExtinctButton:hover {
   background-color: rgb(149, 193, 246);
+  color: white;
 }
 
 @media (max-width: 950px) {

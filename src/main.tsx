@@ -4,7 +4,5 @@ import "./index.css";
 import RootRouter from "./RootRouter";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <RootRouter />
-  </React.StrictMode>
+  <RootRouter />
 );

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import "./LoginPage.css";
 import { Link } from "react-router-dom";
-import { auth } from "../../config/firebase";
+import { auth, db } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import firebase from "firebase/compat/app";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 function LoginPage() {
   const [loggingMode, setLoggingMode] = useState("Login");
@@ -24,18 +26,44 @@ function LoginPage() {
       password !== "" &&
       regexEmail.test(email)
     ) {
-      await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/");
+      try {
+        const regData = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        if (auth.currentUser?.email) {
+          const userDocRef = doc(db, "users", auth.currentUser.uid);
+          const userCartRef = collection(userDocRef, "cart");
+          const newCartDocumentRef = doc(userCartRef, auth.currentUser.email);
+
+          await setDoc(newCartDocumentRef, {
+            // Dane dotyczące koszyka
+          });
+        }
+
+        localStorage.setItem("userData", JSON.stringify(regData));
+        navigate("/");
+      } catch (error) {
+        navigate("/loginPage");
+      }
     }
   };
 
   const handleLogin = async () => {
-    await signInWithEmailAndPassword(auth, email, password);
-    navigate("/");
+    try {
+      const daneLogowania = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      localStorage.setItem("userData", JSON.stringify(daneLogowania));
+      navigate("/");
+    } catch (error) {
+      navigate("/loginPage");
+    }
   };
-
-  console.log(auth.currentUser);
-  // console.log(1);
 
   return (
     <div className="loginPage">

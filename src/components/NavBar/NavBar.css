@@ -5,6 +5,7 @@
   align-items: center;
   background-color: #002e72;
   width: 100%;
+  position: relative;
 }
 
 .brandName,
@@ -27,8 +28,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15%;
+  width: 150px;
   border-right: 1px solid grey;
+  background-color: red;
 }
 
 .profileButton {
@@ -49,47 +51,9 @@
   border-radius: 20px;
   padding: 4px;
   font-family: Arial;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
   color: white;
-}
-
-.LoginDivForTriangle2 {
-  height: 110px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.boxForTriangle2 {
-  height: 100px;
-  aspect-ratio: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-}
-
-.loginPageBigTriangle2 {
-  width: 100%;
-  aspect-ratio: 1;
-  border: 10px solid white;
-  transform: translateY(-50%) rotate(135deg);
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loginPageSmallTriangle2 {
-  width: 50%;
-  aspect-ratio: 1;
-  border: 8px solid white;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .hideDesktop {
@@ -99,7 +63,11 @@
 .displayNone {
   display: none;
 }
+
 @media (max-width: 950px) {
+  .cartIcon {
+    display: none;
+  }
   .NavBar {
     display: flex;
     justify-content: center;
@@ -182,7 +150,6 @@
   }
 
   .hamItem {
-    /* font-weight: bold; */
     width: 70%;
     display: flex;
     justify-content: space-between;
@@ -216,5 +183,10 @@
 
   .green {
     color: #25d431;
+  }
+}
+@media (max-width: 380px) {
+  .hamItem {
+    font-size: 1.4rem;
   }
 }

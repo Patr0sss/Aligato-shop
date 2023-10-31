@@ -1,22 +1,42 @@
 import NavBar from "../../components/NavBar/NavBar";
+import { app } from "../../config/firebase";
 import "./ProfilePage.css";
-import { auth } from "../../config/firebase";
-import { signOut } from "firebase/auth";
+import { UserCredential, getAuth, signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
-
-const handleLogOut = async () => {
-  await signOut(auth);
-};
+import { useEffect, useState } from "react";
 
 function ProfilePage() {
+  const auth = getAuth(app);
+  const creationDate = auth.currentUser?.metadata.creationTime?.slice(5, -7);
+  if (creationDate) {
+    localStorage.setItem("creationDate", creationDate);
+  }
+
+  const handleLogOut = async () => {
+    localStorage.removeItem("userData");
+    await signOut(auth);
+  };
+
+  const [userD, setUserD] = useState<UserCredential | null>(null);
+
+  useEffect(() => {
+    const userDataLocal = localStorage.getItem("userData");
+
+    if (userDataLocal) {
+      setUserD(JSON.parse(userDataLocal));
+    }
+  }, []);
+
   return (
     <div className="profilePage">
       <NavBar />
       <div className="profileBox">
         <div className="profilePageCard">
           <div className="userData">
-            <div>{auth.currentUser?.email}</div>
-            <div>{auth.currentUser?.metadata.creationTime?.slice(5, -7)}</div>
+            <div className="profilePageLine">Email : {userD?.user.email}</div>
+            <div className="profilePageLine">
+              Data Dołaczenia : {localStorage.getItem("creationDate")}
+            </div>
           </div>
           <div className="userLogOut">
             <Link
@@ -30,6 +50,7 @@ function ProfilePage() {
             </Link>
           </div>
         </div>
+        {/* <img src="\src\productIcons\dog2.png" className="profileFriend"></img> */}
       </div>
     </div>
   );

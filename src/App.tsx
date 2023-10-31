@@ -4,181 +4,68 @@ import NavBar from "./components/NavBar/NavBar";
 import ItemCard from "./components/itemCard/ItemCard";
 import Footer from "./components/footer/Footer";
 import SavingSpecies from "./components/SavingSpecies/SavingSpecies";
-import { auth } from "./config/firebase";
+import Magnifier from "./assets/Magnifier";
+import {
+  DocumentData,
+  collection,
+  getDocs,
+  getFirestore,
+} from "firebase/firestore";
 
 function App() {
-  const filteringOptions = ["All", "Dog", "Cat", "Reptile"];
+  // getting products list from firebase
+  const [prodMessage, setProdMessage] = useState("Loading ...");
+  const db = getFirestore();
+  const [products, setProducts] = useState<DocumentData[]>([]);
+  const fetchAllProducts = async () => {
+    const querySnapshot = await getDocs(collection(db, "Products"));
+    querySnapshot.forEach((doc) => {
+      setProducts((currentProducts) => [
+        ...currentProducts,
+        {
+          id: doc.id,
+          name: doc.data().name,
+          description: doc.data().description,
+          price: doc.data().price,
+          spiecies: doc.data().spiecies,
+          picture: doc.data().picture,
+        },
+      ]);
+      setProdMessage("Brak Produktów ...");
+    });
+  };
+  useEffect(() => {
+    setProducts([]);
+    fetchAllProducts();
+  }, []);
+  // -------------------------------------------------
+  localStorage.setItem("productList", JSON.stringify(products));
+
+  const filteringOptions = ["All", "Dog", "Cat", "Reptile", "Special"];
   const [filter, setFilter] = useState("All");
-  console.log(auth.currentUser);
-  const products = [
-    {
-      species: "Reptile",
-      identifyID: "1",
-      name: "Turtle",
-      price: "300",
-      picture: "turtle1",
-      description:
-        "Discover our captivating turtle, a fascinating creature that brings a sense of serenity and tranquility to any space, making it a unique addition to your home.",
-    },
-    {
-      species: "Dog",
-      identifyID: "2",
-      name: "Dog",
-      price: "200",
-      picture: "dog1",
-      description:
-        "Meet our delightful dog, a playful and friendly companion with a heart full of love, ready to brighten your days and fill your home with happiness.",
-    },
-    {
-      species: "Reptile",
-      identifyID: "3",
-      name: "Chameleon",
-      price: "250",
-      picture: "cameleon1",
-      description:
-        "Encounter our mesmerizing chameleon, a master of disguise with its vibrant colors and incredible ability to adapt, adding a touch of wonder and intrigue to your living environment.",
-    },
-    {
-      species: "Cat",
-      identifyID: "4",
-      name: "Cat",
-      price: "150",
-      picture: "cat1",
-      description:
-        "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
-    },
-    {
-      species: "Reptile",
-      identifyID: "5",
-      name: "Geco",
-      price: "150",
-      picture: "geco1",
-      description:
-        "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
-    },
-    {
-      species: "Reptile",
-      identifyID: "1",
-      name: "Turtle",
-      price: "300",
-      picture: "turtle1",
-      description:
-        "Discover our captivating turtle, a fascinating creature that brings a sense of serenity and tranquility to any space, making it a unique addition to your home.",
-    },
-    {
-      species: "Dog",
-      identifyID: "2",
-      name: "Dog",
-      price: "200",
-      picture: "dog1",
-      description:
-        "Meet our delightful dog, a playful and friendly companion with a heart full of love, ready to brighten your days and fill your home with happiness.",
-    },
-    {
-      species: "Reptile",
-      identifyID: "3",
-      name: "Chameleon",
-      price: "250",
-      picture: "cameleon1",
-      description:
-        "Encounter our mesmerizing chameleon, a master of disguise with its vibrant colors and incredible ability to adapt, adding a touch of wonder and intrigue to your living environment.",
-    },
-    {
-      species: "Cat",
-      identifyID: "4",
-      name: "Cat",
-      price: "150",
-      picture: "cat1",
-      description:
-        "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
-    },
-    {
-      species: "Reptile",
-      identifyID: "5",
-      name: "Geco",
-      price: "150",
-      picture: "geco1",
-      description:
-        "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
-    },
-    {
-      species: "Cat",
-      identifyID: "4",
-      name: "Cat",
-      price: "150",
-      picture: "cat1",
-      description:
-        "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
-    },
-    {
-      species: "Reptile",
-      identifyID: "5",
-      name: "Geco",
-      price: "150",
-      picture: "geco1",
-      description:
-        "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
-    },
-    {
-      species: "Reptile",
-      identifyID: "1",
-      name: "Turtle",
-      price: "300",
-      picture: "turtle1",
-      description:
-        "Discover our captivating turtle, a fascinating creature that brings a sense of serenity and tranquility to any space, making it a unique addition to your home.",
-    },
-    {
-      species: "Dog",
-      identifyID: "2",
-      name: "Dog",
-      price: "200",
-      picture: "dog1",
-      description:
-        "Meet our delightful dog, a playful and friendly companion with a heart full of love, ready to brighten your days and fill your home with happiness.",
-    },
-    {
-      species: "Reptile",
-      identifyID: "3",
-      name: "Chameleon",
-      price: "250",
-      picture: "cameleon1",
-      description:
-        "Encounter our mesmerizing chameleon, a master of disguise with its vibrant colors and incredible ability to adapt, adding a touch of wonder and intrigue to your living environment.",
-    },
-    {
-      species: "Cat",
-      identifyID: "4",
-      name: "Cat",
-      price: "150",
-      picture: "cat1",
-      description:
-        "Experience the enchantment of our graceful cat, a sophisticated and independent companion that exudes elegance and offers endless moments of warmth and affection in your home.",
-    },
-  ];
 
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [inputValue, setInputValue] = useState("");
 
-  useEffect(() => {
-    setFilteredProducts(
-      products.filter((product) => product.species == filter || filter == "All")
-    );
-  }, [filter]);
+  function getSearchBarData(SBdata: { target: { value: string } }) {
+    if (SBdata.target.value.length == 0) {
+      setFilter("All");
+    }
 
-  const [itemCount, setItemCount] = useState(0);
+    setInputValue(SBdata.target.value);
+  }
 
-  const number = products.filter(
-    (product) => product.species == filter || filter == "All"
+  const filteredProductss = products.filter(
+    (product) =>
+      (product.spiecies == filter || filter == "All") &&
+      product.name.includes(inputValue)
   );
+  // const { cartItems } = useShoppingCart();
 
-  useEffect(() => {
-    setItemCount(number.length);
-  }, [number]);
-
+  // console.log(cartItems);
+  // console.log(auth.currentUser);
   return (
     <>
       <NavBar />
-
       <div
         className="landingPage"
         style={{
@@ -190,6 +77,7 @@ function App() {
             <div className="filteringOptions">
               {filteringOptions.map((option) => (
                 <div
+                  key={option}
                   className={
                     filter === option ? "filterOptionChosen" : "filterOption"
                   }
@@ -201,36 +89,65 @@ function App() {
                 </div>
               ))}
             </div>
-            <input
-              placeholder="Czego Szukasz ?"
-              className="buyingInput"
-            ></input>
-            <div className="numItems">Number Of Items : {itemCount}</div>
-          </div>
+            <div className="searchBar">
+              <input
+                placeholder="Czego Szukasz ?"
+                className="buyingInput"
+                onChange={getSearchBarData}
+              ></input>
+              <div className="loopSearch">
+                <Magnifier />
+              </div>
+            </div>
 
-          <div className="productLayout">
-            {filteredProducts
-              .slice(0, 8)
-              .filter((product) => product.species == filter || filter == "All")
-              .map((product) => (
-                <ItemCard
-                  name={product.name}
-                  identifyID={product.identifyID}
-                  price={product.price}
-                  picture={product.picture}
-                  data={product}
-                />
-              ))}
+            <div className="numItems">
+              Number Of Items : {filteredProductss.length}
+            </div>
+          </div>
+          <div
+            className="productLayout"
+            style={
+              filteredProductss.length == 0
+                ? {
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }
+                : {}
+            }
+          >
+            {filteredProductss.length == 0 &&
+            prodMessage == "Brak Produktów ..." ? (
+              <div className="brakProduktow">{prodMessage}</div>
+            ) : null}
+
+            {filteredProductss.length == 0 &&
+            prodMessage != "Brak Produktów ..." ? (
+              <img
+                className="pandaSmokeScreen"
+                src="\src\assets\panda.gif"
+                alt={prodMessage}
+              />
+            ) : null}
+            {filteredProductss.slice(0, 8).map((product) => (
+              <ItemCard
+                key={product.id}
+                name={product.name}
+                identifyID={product.identifyID}
+                price={product.price}
+                picture={product.picture}
+                data={product}
+              />
+            ))}
           </div>
         </div>
       </div>
       <SavingSpecies />
-
       <div
         className="landingPage"
         style={{
-          paddingTop: itemCount > 8 ? "85px" : "0px",
-          paddingBottom: itemCount > 8 ? "85px" : "0px",
+          paddingTop: filteredProductss.length > 7 ? "85px" : "0px",
+          paddingBottom: filteredProductss.length > 7 ? "85px" : "0px",
         }}
       >
         <div
@@ -239,21 +156,22 @@ function App() {
             width: "95%",
           }}
         >
-          {filteredProducts
-            .slice(8)
-            .filter((product) => product.species == filter || filter == "All")
-            .map((product) => (
-              <ItemCard
-                name={product.name}
-                identifyID={product.identifyID}
-                price={product.price}
-                picture={product.picture}
-                data={product}
-              />
-            ))}
+          {filteredProductss.length > 7
+            ? filteredProductss
+                .slice(8)
+                .map((product) => (
+                  <ItemCard
+                    key={product.id}
+                    name={product.name}
+                    identifyID={product.identifyID}
+                    price={product.price}
+                    picture={product.picture}
+                    data={product}
+                  />
+                ))
+            : null}
         </div>
       </div>
-
       <Footer />
     </>
   );

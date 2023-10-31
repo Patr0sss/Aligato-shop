@@ -1,7 +1,7 @@
 .ItemCard,
 .ItemCard:hover {
   width: 60%;
-  height: 40vh;
+  height: 35vh;
   max-height: 450px;
   display: flex;
   justify-content: center;
@@ -11,13 +11,9 @@
   background-color: rgb(205, 230, 250);
   border: 2px solid transparent;
   color: black;
-  min-height: 200px;
+  min-height: 250px;
+  min-width: 180px;
   border: 2px solid transparent;
-  /* background-image: linear-gradient(
-    to bottom right,
-    rgb(205, 230, 250),
-    rgb(139, 182, 252)
-  ); */
 }
 
 .ItemCard:hover {
@@ -42,6 +38,7 @@
 }
 .name {
   height: 25%;
+  text-align: center;
 }
 
 .price {

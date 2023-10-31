@@ -3,13 +3,15 @@ import "./NavBar.css";
 import { Link } from "react-router-dom";
 import Hamburger from "../../assets/Hamburger";
 import { auth } from "../../config/firebase";
-import { signOut } from "firebase/auth";
+import { UserCredential, signOut } from "firebase/auth";
 import BarIcon from "../barWithIcon/BarIcon";
 import LogOut from "../../assets/LogOut";
 import Cart from "../../assets/Cart";
 import MyProfile from "../../assets/MyProfile";
 import AboutUs from "../../assets/AboutUs";
 import LoginIcon from "../../assets/Login";
+import ShoppingCart from "../../assets/ShoppingCart";
+import CartPop from "../Cart/CartPop";
 
 function NavBar() {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -17,8 +19,19 @@ function NavBar() {
 
   const handleLogOut = async () => {
     await signOut(auth);
+    localStorage.removeItem("userData");
     setHamburgerOpen(false);
   };
+
+  const [userData, setUserData] = useState<UserCredential | null>(null);
+  useEffect(() => {
+    const userDataLocal = localStorage.getItem("userData");
+
+    if (userDataLocal) {
+      // console.log(JSON.parse(userDataLocal));
+      setUserData(JSON.parse(userDataLocal));
+    }
+  }, []);
 
   return (
     <div className="NavBar">
@@ -29,13 +42,17 @@ function NavBar() {
           Aligato
         </Link>
       </div>
-      <div className="profileButton">
+      <div
+        className="profileButton"
+        // style={{ backgroundColor: "green" }}
+      >
+        <CartPop />
         <Link
-          to={auth.currentUser ? "/profilePage" : "/loginPage"}
+          to={userData ? "/profilePage" : "/loginPage"}
           style={{ color: "black" }}
         >
           <div className="smallProfileButton">
-            {auth.currentUser ? (
+            {userData ? (
               <div className="hideMobile">Your Profile</div>
             ) : (
               <div className="hideMobile">Login</div>
@@ -75,11 +92,11 @@ function NavBar() {
                   : "hamItem green"
                 : "displayNone"
             }
-            text={auth.currentUser ? "My Profile" : "Login"}
-            icon={auth.currentUser ? <MyProfile /> : <LoginIcon />}
-            link={auth.currentUser ? "/profilePage" : "/loginPage"}
+            text={userData ? "My Profile" : "Login"}
+            icon={userData ? <MyProfile /> : <LoginIcon />}
+            link={userData ? "/profilePage" : "/loginPage"}
           />
-          {auth.currentUser ? (
+          {userData ? (
             <BarIcon
               className={hamburgerOpen ? "hamItem" : "displayNone"}
               text="Cart"
@@ -92,19 +109,16 @@ function NavBar() {
             text="About Us"
             icon={<AboutUs />}
           />
-          {auth.currentUser ? (
-            // <Link to="./loginPage">
+          {userData ? (
             <BarIcon
               className={hamburgerOpen ? "hamItem logOut" : "displayNone"}
               text="Log Out"
               icon={<LogOut />}
               onClick={() => {
                 handleLogOut();
-                // console.log(auth.currentUser);
               }}
             />
-          ) : // </Link>
-          null}
+          ) : null}
         </div>
       </div>
     </div>

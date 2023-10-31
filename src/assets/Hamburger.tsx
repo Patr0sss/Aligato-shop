@@ -7,7 +7,7 @@ function Hamburer({ width }: { width?: string }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
         stroke-linecap="round"
@@ -18,19 +18,19 @@ function Hamburer({ width }: { width?: string }) {
         <path
           d="M20 7L4 7"
           stroke="#ffffff"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke-linecap="round"
         ></path>{" "}
         <path
           d="M20 12L4 12"
           stroke="#ffffff"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke-linecap="round"
         ></path>{" "}
         <path
           d="M20 17L4 17"
           stroke="#ffffff"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke-linecap="round"
         ></path>{" "}
       </g>

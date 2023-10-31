@@ -1,7 +1,7 @@
 function ShoppingCart({
   width,
   height,
-  fill = "#808080",
+  fill = "#ffffff",
 }: {
   width?: string;
   height?: string;
@@ -10,10 +10,10 @@ function ShoppingCart({
   return (
     <div>
       <svg
-        width={width || "40px"}
-        height={height || "40px"}
+        width={width || "50px"}
+        height={height || "50px"}
         viewBox="0 0 24 24"
-        fill="none"
+        fill={fill}
         xmlns="http://www.w3.org/2000/svg"
       >
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -31,6 +31,37 @@ function ShoppingCart({
         </g>
       </svg>
     </div>
+    // <svg
+    //   className="svg-snoweb svg-theme-light"
+    //   width={width || "40px"}
+    //   height={height || "40px"}
+    //   preserveAspectRatio="xMidYMid meet"
+    //   viewBox="0 0 100 100"
+    //   x="0"
+    //   xmlns="http://www.w3.org/2000/svg"
+    //   y="0"
+    // >
+    //   {/* <clipPath id="clip-path-202310-3014-1830-492950b6-d985-42dc-8fa0-dfa47ae9ce06">
+    //     <circle cx="50" cy="50" r="50"></circle>
+    //   </clipPath> */}
+    //   <circle className="svg-fill-tertiary" cx="50" cy="50" r="50"></circle>
+    //   <circle
+    //     className="svg-fill-secondary svg-builder-circle"
+    //     cx="50"
+    //     cy="50"
+    //     r="50"
+    //   ></circle>
+    //   <g transform="translate(20.00, 20.00) scale(0.60, 0.60)">
+    //     <path
+    //       className="svg-stroke-primary"
+    //       d="M18.3,18.3h7.1l1.4,7.1m5.6,28.1H67.6L81.7,25.4H26.8m5.6,28.1L26.8,25.4m5.6,28.1-8.1,8.1a3.5,3.5,0,0,0,2.5,6H67.6m0,0a7,7,0,0,0-7,7,7,7,0,1,0,14,0A7,7,0,0,0,67.6,67.6Zm-28.2,7a7,7,0,1,1-14,0,7,7,0,0,1,14,0Z"
+    //       fill="none"
+    //       stroke-linecap="round"
+    //       stroke-linejoin="round"
+    //       stroke-width="8"
+    //     ></path>
+    //   </g>
+    // </svg>
   );
 }
 

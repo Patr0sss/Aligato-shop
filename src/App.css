@@ -25,6 +25,7 @@ body {
   flex-direction: column;
   width: 100vw;
   overflow-x: hidden;
+  /* min-height: 470px; */
   background-color: rgb(149, 193, 246);
 }
 
@@ -81,7 +82,7 @@ body {
   display: grid;
   grid-row: 4;
   grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
-  row-gap: 30px;
+  row-gap: 40px;
   justify-items: center;
 }
 
@@ -95,16 +96,46 @@ body {
 .buyingInput,
 .buyingInput:hover,
 .buyingInput::selection {
-  width: 50%;
+  width: 90%;
   height: 35px;
   border: none;
   outline: transparent;
-  border-radius: 5px;
+  border-radius: 5px 0 0 5px;
   font-size: 20px;
   padding-left: 10px;
   padding-right: 10px;
+  /* background-color: red; */
 }
 
+.searchBar {
+  width: 40%;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loopSearch {
+  width: 10%;
+  height: 37px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 5px 5px 0;
+  /* background-color: red; */
+}
+
+.brakProduktow {
+  font-size: 2rem;
+  color: white;
+}
+
+.pandaSmokeScreen {
+  width: 65%;
+  aspect-ratio: 16/9;
+  border-radius: 5px;
+}
 @media (max-width: 950px) {
   .landingPage {
     padding-bottom: 50px;
@@ -160,10 +191,16 @@ body {
   .buyingInput:hover,
   .buyingInput::selection {
     width: 80%;
+    min-width: 250px;
   }
 
   .WelcomePageIMG {
     object-fit: cover;
+  }
+
+  .pandaSmokeScreen {
+    width: 80%;
+    aspect-ratio: 16/9;
   }
 }
 
