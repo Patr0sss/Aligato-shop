@@ -20,7 +20,7 @@ function ItemPage() {
       <div className="itemBlock">
         <div className="leftSide">
           <img
-            src={"/src/productIcons/" + productData.picture + ".png"}
+            src={"/productIcons/" + productData.picture + ".png"}
             width="40%"
             aspect-ratio="1/1"
             className="itemPicture"

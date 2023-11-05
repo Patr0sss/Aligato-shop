@@ -31,7 +31,7 @@ export default function ItemCard({
     >
       <div className="picture">
         <img
-          src={"/public/productIcons/" + picture + ".png"}
+          src={"/productIcons/" + picture + ".png"}
           width="100vw"
           bacground-color="red"
           aspect-ratio="1:1"
