@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-import { useUserInfo } from "./UserContext";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "../config/firebase";
 
 export function useLocalStorage<T>(key: string, initialValue: T | (() => T)) {
   const [value, setValue] = useState<T>(() => {

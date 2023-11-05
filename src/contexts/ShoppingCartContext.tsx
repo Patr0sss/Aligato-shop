@@ -1,8 +1,5 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext } from "react";
 import { useLocalStorage } from "./useLocalStorage";
-import { collection, doc, setDoc } from "firebase/firestore";
-import { db } from "../config/firebase";
-import { useUserInfo } from "./UserContext";
 
 type ShoppingCartProviderProps = {
   children: ReactNode;
@@ -26,6 +23,7 @@ type CartItem = {
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useShoppingCart() {
   return useContext(ShoppingCartContext);
 }
@@ -83,7 +81,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     });
   }
 
-  function getCart(id: CartItem[]) {
+  function getCart() {
     console.log(cartItems);
   }
 

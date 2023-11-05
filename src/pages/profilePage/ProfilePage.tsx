@@ -1,6 +1,5 @@
 import "./ProfilePage.css";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { useUserInfo } from "../../contexts/UserContext";
 
 function ProfilePage() {

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfilePage from "./pages/profilePage/ProfilePage.tsx";
 import App from "./App.tsx";
 import ItemPage from "./pages/itemPage/ItemPage.tsx";
@@ -8,13 +8,11 @@ import NavBar from "./components/NavBar/NavBar.tsx";
 import { DocumentData, getDocs, collection } from "@firebase/firestore";
 import { useState, useEffect } from "react";
 import { db } from "./config/firebase.ts";
-import { UserCredential } from "firebase/auth";
-import { UserContext, useUserInfo } from "./contexts/UserContext.tsx";
+import { UserContext } from "./contexts/UserContext.tsx";
 import AuthGuard from "./components/AuthGuard/AuthGuard.tsx";
 import CartPage from "./pages/cartPage/CartPage.tsx";
 
 const RootRouter = () => {
-  const [prodMessage, setProdMessage] = useState("Loading ...");
   const [products, setProducts] = useState<DocumentData[]>([]);
   const fetchAllProducts = async () => {
     const querySnapshot = await getDocs(collection(db, "Products"));
@@ -30,7 +28,6 @@ const RootRouter = () => {
           picture: doc.data().picture,
         },
       ]);
-      setProdMessage("Brak Produktów ...");
     });
   };
   useEffect(() => {

@@ -3,10 +3,9 @@ import "./NavBar.css";
 import { Link, useLocation } from "react-router-dom";
 import Hamburger from "../../assets/Hamburger";
 import { auth } from "../../config/firebase";
-import { UserCredential, onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import BarIcon from "../barWithIcon/BarIcon";
 import LogOut from "../../assets/LogOut";
-import Cart from "../../assets/Cart";
 import MyProfile from "../../assets/MyProfile";
 import AboutUs from "../../assets/AboutUs";
 import LoginIcon from "../../assets/Login";
@@ -48,7 +47,7 @@ function NavBar({ products }: NavBarProps) {
         setUser(user.uid, user.email != null ? user.email : "");
       }
     });
-  }, []);
+  }, [setUser]);
 
   return (
     <div

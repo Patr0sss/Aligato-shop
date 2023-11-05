@@ -2,14 +2,7 @@ import { useEffect, useState } from "react";
 import "./CartPop.css";
 import ShoppingCart from "../../assets/ShoppingCart";
 import { useShoppingCart } from "../../contexts/ShoppingCartContext";
-import {
-  DocumentData,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  setDoc,
-} from "firebase/firestore";
+import { DocumentData, deleteDoc, doc, setDoc } from "firebase/firestore";
 import { useUserInfo } from "../../contexts/UserContext";
 import { db } from "../../config/firebase";
 
@@ -66,6 +59,7 @@ function CartPop({ products }: NavBarProps) {
     }
 
     // fetchUsersCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItems, products]);
 
   const updateCartFirebase = async (item: cartItemBar) => {

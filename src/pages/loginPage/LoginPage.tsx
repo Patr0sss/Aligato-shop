@@ -55,7 +55,7 @@ function LoginPage() {
     }
   };
 
-  const { loginUser, userInfo } = useUserInfo();
+  const { loginUser } = useUserInfo();
 
   return (
     <div className="loginPage">
