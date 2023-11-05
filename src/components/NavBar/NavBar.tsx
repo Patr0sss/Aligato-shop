@@ -1,40 +1,60 @@
 import { useEffect, useState } from "react";
 import "./NavBar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Hamburger from "../../assets/Hamburger";
 import { auth } from "../../config/firebase";
-import { UserCredential, signOut } from "firebase/auth";
+import { UserCredential, onAuthStateChanged, signOut } from "firebase/auth";
 import BarIcon from "../barWithIcon/BarIcon";
 import LogOut from "../../assets/LogOut";
 import Cart from "../../assets/Cart";
 import MyProfile from "../../assets/MyProfile";
 import AboutUs from "../../assets/AboutUs";
 import LoginIcon from "../../assets/Login";
-import ShoppingCart from "../../assets/ShoppingCart";
 import CartPop from "../Cart/CartPop";
+import { DocumentData } from "firebase/firestore";
+import { useUserInfo } from "../../contexts/UserContext";
+import ShoppingCart from "../../assets/ShoppingCart";
 
-function NavBar() {
+interface NavBarProps {
+  products: DocumentData[];
+}
+
+function NavBar({ products }: NavBarProps) {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
   const [hamburgerIncrement, setHamburgerIncrement] = useState(0);
+  // const handleLogOut = async () => {
+  //   await signOut(auth);
+  //   localStorage.removeItem("userData");
+  //   setHamburgerOpen(false);
+  // };
 
-  const handleLogOut = async () => {
-    await signOut(auth);
-    localStorage.removeItem("userData");
-    setHamburgerOpen(false);
-  };
+  // const location = useLocation();
+  // const [userData, setUserData] = useState<UserCredential | null>(null);
+  // useEffect(() => {
+  //   const userDataLocal = localStorage.getItem("userData");
+  //   if (userDataLocal) {
+  //     setUserData(JSON.parse(userDataLocal));
+  //   }
+  // }, []);
 
-  const [userData, setUserData] = useState<UserCredential | null>(null);
+  const location = useLocation();
+  const { userInfo, logoutUser } = useUserInfo();
+  // const { logoutUser } = useUserInfo();
+  const { setUser } = useUserInfo();
+
   useEffect(() => {
-    const userDataLocal = localStorage.getItem("userData");
-
-    if (userDataLocal) {
-      // console.log(JSON.parse(userDataLocal));
-      setUserData(JSON.parse(userDataLocal));
-    }
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user.uid, user.email != null ? user.email : "");
+      }
+    });
   }, []);
 
   return (
-    <div className="NavBar">
+    <div
+      className="NavBar"
+      style={location.pathname === "/loginPage" ? { display: "none" } : {}}
+    >
       <div className="profileButton hideDesktop"></div>
 
       <div style={{ width: "50%" }} className="brandName">
@@ -42,17 +62,14 @@ function NavBar() {
           Aligato
         </Link>
       </div>
-      <div
-        className="profileButton"
-        // style={{ backgroundColor: "green" }}
-      >
-        <CartPop />
+      <div className="profileButton">
+        <CartPop products={products} />
         <Link
-          to={userData ? "/profilePage" : "/loginPage"}
+          to={userInfo.uid ? "/profilePage" : "/loginPage"}
           style={{ color: "black" }}
         >
           <div className="smallProfileButton">
-            {userData ? (
+            {userInfo.uid ? (
               <div className="hideMobile">Your Profile</div>
             ) : (
               <div className="hideMobile">Login</div>
@@ -80,27 +97,30 @@ function NavBar() {
         }
       >
         <div className={hamburgerOpen ? "hamItem hamUser" : "displayNone"}>
-          {auth.currentUser ? "UserName" : null}
+          {userInfo.uid ? "UserName" : null}
         </div>
 
         <div className="hamburgerContent">
           <BarIcon
             className={
               hamburgerOpen
-                ? auth.currentUser
+                ? userInfo.uid
                   ? "hamItem"
                   : "hamItem green"
                 : "displayNone"
             }
-            text={userData ? "My Profile" : "Login"}
-            icon={userData ? <MyProfile /> : <LoginIcon />}
-            link={userData ? "/profilePage" : "/loginPage"}
+            text={userInfo.uid ? "My Profile" : "Login"}
+            icon={userInfo.uid ? <MyProfile /> : <LoginIcon />}
+            link={userInfo.uid ? "/profilePage" : "/loginPage"}
+            onClick={() => setHamburgerOpen(!hamburgerOpen)}
           />
-          {userData ? (
+          {userInfo.uid ? (
             <BarIcon
               className={hamburgerOpen ? "hamItem" : "displayNone"}
               text="Cart"
-              icon={<Cart />}
+              icon={<ShoppingCart />}
+              link={userInfo.uid ? "/cart" : "/loginPage"}
+              onClick={() => setHamburgerOpen(!hamburgerOpen)}
             />
           ) : null}
 
@@ -108,14 +128,16 @@ function NavBar() {
             className={hamburgerOpen ? "hamItem" : "displayNone"}
             text="About Us"
             icon={<AboutUs />}
+            onClick={() => setHamburgerOpen(!hamburgerOpen)}
           />
-          {userData ? (
+          {userInfo.uid ? (
             <BarIcon
               className={hamburgerOpen ? "hamItem logOut" : "displayNone"}
               text="Log Out"
               icon={<LogOut />}
               onClick={() => {
-                handleLogOut();
+                // handleLogOut();
+                logoutUser();
               }}
             />
           ) : null}

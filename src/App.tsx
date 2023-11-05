@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import NavBar from "./components/NavBar/NavBar";
 import ItemCard from "./components/itemCard/ItemCard";
 import Footer from "./components/footer/Footer";
 import SavingSpecies from "./components/SavingSpecies/SavingSpecies";
 import Magnifier from "./assets/Magnifier";
-import {
-  DocumentData,
-  collection,
-  getDocs,
-  getFirestore,
-} from "firebase/firestore";
+import { DocumentData, collection, getDocs } from "firebase/firestore";
+import { auth, db } from "./config/firebase";
+import { useUserInfo } from "./contexts/UserContext";
+// import { onAuthStateChanged } from "firebase/auth";
+// import { useUserInfo } from "./contexts/UserContext";
+// import ImportantInfo from "./components/importantInfo/ImportantInfo";
 
 function App() {
   // getting products list from firebase
   const [prodMessage, setProdMessage] = useState("Loading ...");
-  const db = getFirestore();
   const [products, setProducts] = useState<DocumentData[]>([]);
   const fetchAllProducts = async () => {
     const querySnapshot = await getDocs(collection(db, "Products"));
@@ -39,7 +37,6 @@ function App() {
     fetchAllProducts();
   }, []);
   // -------------------------------------------------
-  localStorage.setItem("productList", JSON.stringify(products));
 
   const filteringOptions = ["All", "Dog", "Cat", "Reptile", "Special"];
   const [filter, setFilter] = useState("All");
@@ -59,13 +56,9 @@ function App() {
       (product.spiecies == filter || filter == "All") &&
       product.name.includes(inputValue)
   );
-  // const { cartItems } = useShoppingCart();
 
-  // console.log(cartItems);
-  // console.log(auth.currentUser);
   return (
     <>
-      <NavBar />
       <div
         className="landingPage"
         style={{
@@ -133,7 +126,7 @@ function App() {
               <ItemCard
                 key={product.id}
                 name={product.name}
-                identifyID={product.identifyID}
+                id={product.id}
                 price={product.price}
                 picture={product.picture}
                 data={product}
@@ -163,7 +156,7 @@ function App() {
                   <ItemCard
                     key={product.id}
                     name={product.name}
-                    identifyID={product.identifyID}
+                    id={product.id}
                     price={product.price}
                     picture={product.picture}
                     data={product}
@@ -171,6 +164,7 @@ function App() {
                 ))
             : null}
         </div>
+        {/* <ImportantInfo /> */}
       </div>
       <Footer />
     </>

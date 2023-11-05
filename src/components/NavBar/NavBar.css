@@ -120,9 +120,12 @@
     flex-direction: column;
     color: white;
     font-size: 30px;
+    /* border: 5px solid #002e72;
+    border-right: none;
+    background-color: rgb(149, 193, 246); */
   }
   .hamburger {
-    animation: hamburgerShow 0.2s linear 1 alternate;
+    animation: hamburgerShow 0.1s linear 1 alternate;
   }
 
   @keyframes hamburgerShow {
@@ -136,7 +139,7 @@
   }
   .hamHide {
     width: 0px;
-    animation: hamburgerHIDE 0.2s linear 1 alternate;
+    animation: hamburgerHIDE 0.1s linear 1 alternate;
   }
 
   @keyframes hamburgerHIDE {
@@ -149,7 +152,8 @@
     }
   }
 
-  .hamItem {
+  .hamItem,
+  .hamItem:hover {
     width: 70%;
     display: flex;
     justify-content: space-between;

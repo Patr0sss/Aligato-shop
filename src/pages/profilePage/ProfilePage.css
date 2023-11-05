@@ -1,5 +1,5 @@
 .profilePage {
-  min-height: 100vh;
+  max-height: 100vh;
   width: 100vw;
   align-items: self-end;
 }
@@ -25,7 +25,7 @@
 
 .profilePageCard {
   width: 40%;
-  height: 80vh;
+  height: 70vh;
   border: 3px solid #002e72;
   background-color: rgb(149, 193, 246);
   border-radius: 5px;
@@ -97,7 +97,11 @@
     width: 65%;
   }
 }
-
+@media (max-width: 950px) {
+  .profilePageCard {
+    max-height: 65vh;
+  }
+}
 @media (max-width: 750px) {
   .profilePageCard {
     width: 90%;

@@ -1,5 +1,8 @@
-import { ReactNode, createContext, useContext } from "react";
+import { ReactNode, createContext, useContext, useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { db } from "../config/firebase";
+import { useUserInfo } from "./UserContext";
 
 type ShoppingCartProviderProps = {
   children: ReactNode;
@@ -13,6 +16,7 @@ type ShoppingCartContext = {
   getCartQuantity: number;
   cartItems: CartItem[];
   getCart: (id: CartItem[]) => void;
+  deleteCart: () => void;
 };
 
 type CartItem = {
@@ -31,6 +35,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     "shoppingCart",
     []
   );
+  // const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   function getItemQuantity(id: string) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
@@ -87,6 +92,10 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     0
   );
 
+  function deleteCart() {
+    setCartItems([]);
+  }
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -97,6 +106,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         getCartQuantity,
         cartItems,
         getCart,
+        deleteCart,
       }}
     >
       {children}

@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 
 export default function ItemCard({
   picture,
-  identifyID,
+  id,
   name,
   price,
   data,
 }: {
   picture?: string;
-  identifyID: string;
+  id: string;
   name?: string;
   price?: string;
   data?: any;
@@ -24,7 +24,7 @@ export default function ItemCard({
 
   return (
     <Link
-      to={"/" + identifyID}
+      to={"/" + id}
       state={{ data: data }}
       className="ItemCard"
       onClick={() => setItemClicked(!itemClicked)}

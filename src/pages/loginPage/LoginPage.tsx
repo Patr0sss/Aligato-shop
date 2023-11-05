@@ -3,12 +3,9 @@ import "./LoginPage.css";
 import { Link } from "react-router-dom";
 import { auth, db } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import firebase from "firebase/compat/app";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
+import { useUserInfo } from "../../contexts/UserContext";
 
 function LoginPage() {
   const [loggingMode, setLoggingMode] = useState("Login");
@@ -20,6 +17,8 @@ function LoginPage() {
   const [repeatPassword, setRepeatPassword] = useState("");
   const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   const navigate = useNavigate();
+  // const { userInfo } = useUserInfo();
+
   const createUser = async () => {
     if (
       password === repeatPassword &&
@@ -27,25 +26,22 @@ function LoginPage() {
       regexEmail.test(email)
     ) {
       try {
-        const regData = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
+        await createUserWithEmailAndPassword(auth, email, password);
 
         if (auth.currentUser?.email) {
           const userDocRef = doc(db, "users", auth.currentUser.uid);
           const userCartRef = collection(userDocRef, "cart");
-          const newCartDocumentRef = doc(userCartRef, auth.currentUser.email);
+          const newCartDocumentRef = doc(userCartRef);
 
-          await setDoc(newCartDocumentRef, {
-            // Dane dotyczące koszyka
-          });
+          await setDoc(newCartDocumentRef, {});
+
+          // const usersCartsRe = doc(db, "usersCarts", auth.currentUser.uid);
+          // await setDoc(usersCartsRe, {});
         }
 
-        localStorage.setItem("userData", JSON.stringify(regData));
         navigate("/");
       } catch (error) {
+        console.log(error);
         navigate("/loginPage");
       }
     }
@@ -53,17 +49,13 @@ function LoginPage() {
 
   const handleLogin = async () => {
     try {
-      const daneLogowania = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      localStorage.setItem("userData", JSON.stringify(daneLogowania));
-      navigate("/");
+      loginUser(email, password);
     } catch (error) {
       navigate("/loginPage");
     }
   };
+
+  const { loginUser, userInfo } = useUserInfo();
 
   return (
     <div className="loginPage">
@@ -115,6 +107,7 @@ function LoginPage() {
               <div
                 className="logRegButton leftLoginBar1 leftLoginBar3"
                 onClick={() => {
+                  // loggingMode == "Register" ? createUser() : handleLogin();
                   loggingMode == "Register" ? createUser() : handleLogin();
                 }}
               >

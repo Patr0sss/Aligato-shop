@@ -71,11 +71,14 @@ body {
 }
 
 .filterOption {
-  border-bottom: 2px solid transparent;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
 }
 
 .filterOptionChosen {
-  border-bottom: 2px solid white;
+  border-bottom: 3px solid #002e72;
+  color: #002e72;
+  cursor: pointer;
 }
 .productLayout {
   width: 100%;

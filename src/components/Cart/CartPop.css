@@ -1,44 +1,117 @@
 .cartIcon {
   margin-right: 30px;
   clip-path: circle();
+  border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 15px;
+  flex-direction: column;
+  cursor: pointer;
 }
 
 .cartPopUp {
   z-index: 1;
-
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   position: absolute;
   width: 75%;
-  height: 80vh;
-  top: 120%;
+  height: calc(100vh - 140px);
+  top: 100%;
   left: 50%;
   transform: translate(-50%, 0);
-  background-color: white;
-  border-radius: 5px;
-  border: 2px solid black;
+  background-color: rgb(149, 193, 246);
+  border-radius: 0px 0 5px 5px;
+  border: 4px solid #002e72;
+  border-top: none;
   font-family: Arial;
-  /* align-items: center; */
+  color: white;
 }
 
 .cartPopUpTop {
   width: 96%;
   height: 12%;
-  /* background-color: red; */
-  border-bottom: 2px solid black;
+  border-bottom: 3px solid #002e72;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: left;
   font-size: 25px;
+  /* background-color: green; */
+  padding-top: 20px;
 }
 
+.cartBarsBox {
+  padding: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  display: flex;
+  width: 75%;
+  height: 80%;
+  gap: 20px;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+  color: #002e72;
+  overflow-y: auto;
+  text-wrap: nowrap;
+  /* background-color: red; */
+  /* padding-top: 200px; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.cartItemBar {
+  width: 90%;
+  background-color: rgb(205, 230, 250);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 4px;
+  height: 40px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.cartItemBarLeft {
+  height: 100%;
+  width: 25%;
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.6rem;
+  justify-content: center;
+  padding-left: 40px;
+}
+
+.cartItemBarRight {
+  height: 100%;
+  width: 75%;
+  /* background-color: green; */
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 20px;
+  padding-right: 50px;
+  font-size: 1.6rem;
+}
 @media (max-width: 950px) {
   .cartPopUp {
     height: 96vh;
+    width: 98vw;
+    /* font-size: 1rem; */
+    display: none;
+  }
+
+  .cartItemBar {
+    font-size: 1rem;
+    width: 90%;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .cartIcon {
+    display: none;
   }
 }

@@ -1,35 +1,52 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { ReactNode, createContext, useContext, useState } from "react";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createContext, ReactNode, useContext, useState } from "react";
 import { auth } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
-
 interface userProps {
   uid: string;
   email: string;
-  createdDate: string;
 }
 
 interface UserProvider {
   userInfo: userProps;
-  handleUser: (info: userProps) => void;
+  loginUser: (email: string, password: string) => void;
   logoutUser: () => void;
+  setUser: (uid: string, email: string) => void;
 }
-type userInfoProps = {
+interface userProviderProps {
   children: ReactNode;
+}
+const UserProvider = createContext({} as UserProvider);
+
+export const useUserInfo = () => {
+  return useContext(UserProvider);
 };
+export const UserContext = ({ children }: userProviderProps) => {
+  const [userInfo, setUserInfo] = useState<userProps>({ uid: "", email: "" });
 
-// const [email, setEmail] = useState("");
-// const [password, setPassword] = useState("");
-// const handleLogin = async () => {
-//   await signInWithEmailAndPassword(auth, email, password);
-//   //dane auth do use Contexta
-//   navigate("/");
-// };
-const UserContext = createContext({});
+  const loginUser = async (email: string, password: string) => {
+    const user = await signInWithEmailAndPassword(auth, email, password);
+    setUserInfo({
+      uid: user.user.uid,
+      email: user.user.email != null ? user.user.email : "",
+    });
+    navigate("/");
+  };
+  const navigate = useNavigate();
 
-export function useUserInfo() {
-  return useContext(UserContext);
-}
-export function UserInfoProvider({ children }: userInfoProps) {
-  return <UserContext.Provider value={{}}>{children}</UserContext.Provider>;
-}
+  const logoutUser = async () => {
+    await signOut(auth);
+
+    setUserInfo({ uid: "", email: "" });
+    navigate("/loginPage");
+  };
+
+  const setUser = (uid: string, email: string) => {
+    setUserInfo({ uid: uid, email: email });
+  };
+  return (
+    <UserProvider.Provider value={{ loginUser, logoutUser, userInfo, setUser }}>
+      {children}
+    </UserProvider.Provider>
+  );
+};
