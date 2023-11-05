@@ -139,7 +139,7 @@ function LoginPage() {
               : "loginCardRight"
           }
         >
-          <img src="/src/assets/bear.jpg" className="loginPageImage1"></img>
+          <img src="/productIcons/bear.jpg" className="loginPageImage1"></img>
         </div>
       </div>
     </div>
